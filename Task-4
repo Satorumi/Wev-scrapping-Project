@@ -1,0 +1,50 @@
+# Task 4: Attach IMDB, Metascore, and Rotten Tomatoes scores to dataset (working with APIs)
+
+import pickle
+
+def save_data_pickle(filename, data):
+    with open(filename, 'wb') as f:
+        pickle.dump(data, f)
+
+def load_data_pickle(filename):
+    with open(filename, 'rb') as f:
+        return pickle.load(f)
+        
+
+
+
+movies_info = load_data_pickle("disney_movies_data.pickle")
+
+import requests
+import urllib
+import os
+
+def get_omdb_info(title):
+    base_url = 'http://www.omdbapi.com/?'
+    parameters = {"apikey": "670a52d2", "t": title}
+    params_encoded = urllib.parse.urlencode(parameters)
+    full_url = base_url + params_encoded
+    return requests.get(full_url).json()
+
+
+
+def get_rotten_tomato_score(omdb_info):
+    ratings = omdb_info.get('Ratings', [])
+    for rating in ratings:
+        if rating['Source'] == 'Rotten Tomatoes':
+            return 'N/A' if rating['Value'] == None else rating['Value']
+        
+    
+for movie in movies_info:
+    title = movie['Title']
+    omdb_info = get_omdb_info(title)
+    movie['Genre'] = omdb_info.get('Genre', 'N/A')
+    movie['Awards'] = omdb_info.get('Awards', 'N/A')
+    movie['Rated'] = omdb_info.get('Rated', 'N/A')
+    movie['Type'] = omdb_info.get('Type', 'N/A')
+    movie['IMDB'] = omdb_info.get('imdbRating', 'N/A')
+    movie['MetaScore'] = omdb_info.get('Metascore', 'N/A')
+    movie['Rotten Tomatoes'] = get_rotten_tomato_score(omdb_info)
+
+
+save_data_pickle("disney_movies_data", movies_info)
