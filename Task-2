@@ -3,7 +3,7 @@
 # import librabries and packages
 from bs4 import BeautifulSoup as bs
 import requests
-import pandas as pd
+
 
 # get link
 webpage = requests.get('https://en.wikipedia.org/wiki/List_of_Walt_Disney_Pictures_films')
