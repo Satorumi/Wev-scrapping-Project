@@ -12,7 +12,6 @@ import re
 
 amounts = r"thousand|million|billion"
 number = r"\d+(,\d{3})*\.*\d*"
-
 word_re = fr"\${number}(-|\sto\s)?({number})?\s({amounts})"
 
 def word_to_value(word):
@@ -83,6 +82,6 @@ def load_data_pickle(filename):
         return pickle.load(f)
         
 
-save_data_pickle("disney_movie_data_cleaned_more.pickle", movie_info_list)
-movies_info = load_data_pickle("disney_movie_data_cleaned_more.pickle")
+save_data_pickle("disney_movie_data.pickle", movies_info)
+movies_info = load_data_pickle("disney_movie_data.pickle")
     
