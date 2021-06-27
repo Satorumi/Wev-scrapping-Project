@@ -20,3 +20,8 @@ Link: https://en.wikipedia.org/wiki/List_of_Walt_Disney_Pictures_films
   - Task #3.5: Convert “Budget” & “Box office” fields to floats
   - Task #3.6: Convert dates into datetime objects
   - Saving our data again (using Pickle)
+
+
+## Task #4: Attach IMDB, Metascore, and Rotten Tomatoes scores to dataset (working with APIs)
+
+## Task #5: Save final dataset as a JSON file and as a CSV file
