@@ -18,7 +18,7 @@ word_re = fr"\${number}(-|\sto\s)?({number})?\s({amounts})"
 
 def word_to_value(word):
     value_dict = {"thousand": 1000, "million": 1000000, "billion": 1000000000}
-    return value_dict[word.lower(), 1]
+    return value_dict[word.lower()]
 
 def parse_word_syntax(string):
     stripped_string = string.replace(",", "")
@@ -77,11 +77,11 @@ for movie in movies_info:
 import pickle
 
 def save_data_pickle(filename, data):
-    with open(name, 'wb') as f:
+    with open(filename, 'wb') as f:
         pickle.dump(data, f)
 
 def load_data_pickle(filename):
-    with open(name, 'rb') as f:
+    with open(filename, 'rb') as f:
         return pickle.load(f)
         
 
