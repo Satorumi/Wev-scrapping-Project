@@ -5,7 +5,7 @@ from: https://youtu.be/Ewgy-G9cmbg
 Link: https://en.wikipedia.org/wiki/Soul_(2020_film)
 
 
-## Task #2: Scrape infobox for all movies in List of Disney Films (save as list of dictionaries) (28:52)
+## Task #2: Scrape infobox for all movies in List of Disney Films (save as list of dictionaries)
 Link: https://en.wikipedia.org/wiki/List_of_Walt_Disney_Pictures_films
 
 - Robots.txt (Are you allowed to scrape a site?)
