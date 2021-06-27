@@ -1,0 +1,33 @@
+# import librabries and packages
+from bs4 import BeautifulSoup as bs
+import requests
+import pandas as pd
+
+# get link
+webpage = requests.get('https://en.wikipedia.org/wiki/Soul_(2020_film)')
+soup = bs(webpage.content, "lxml")
+
+# Task 1: Scrape the infobox from a Movie wiki page (save in python dictionary and create a data frame)
+# scrape a table
+movie_info = {}
+info_box = soup.find('table', class_ = 'infobox vevent')
+
+# scrape info
+# define a function get values in a list of values
+def get_content_value(row):
+    if row.find('li'):
+        return [val.get_text(' ', strip=True).replace("\xa0", " ") for val in row.find_all('li')]
+    else:
+        return row.get_text(' ', strip=True).replace("\xa0", " ")
+
+rows = info_box.find_all('tr')
+for index, row in enumerate(rows):
+    if index == 0:
+        movie_info['title'] = row.find('th').get_text().title()
+    elif index != 1:
+        content_key = row.find('th').get_text(' ', strip=True)
+        content_value = get_content_value(row.find('td'))
+        movie_info[content_key] = content_value
+
+movie_info_df = pd.DataFrame(movie_info.values(), index=movie_info.keys())
+print(movie_info_df)
