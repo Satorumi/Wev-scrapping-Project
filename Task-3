@@ -1,5 +1,6 @@
 # Task 3: Clean our data!
 
+# Task 3.4: Convert “Running time” field to an integer
 def minutes_to_integer(running_time):
     if running_time == "N/A":
         return None    
@@ -7,7 +8,8 @@ def minutes_to_integer(running_time):
         return int(running_time[0].split(" ")[0])
     else: # is a string
         return int(running_time.split(" ")[0])
-        
+ 
+# Task 3.5: Convert “Budget” & “Box office” fields to floats
 import re
 
 amounts = r"thousand|million|billion"
@@ -43,7 +45,8 @@ def money_conversion(money):
         return parse_value_syntax(value_syntax.group())
     else:
         return None 
-        
+ 
+
 from datetime import datetime
 def clean_date(date):
     return date.split("(")[0].strip()
