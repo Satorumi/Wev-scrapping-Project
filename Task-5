@@ -1,7 +1,0 @@
-# Task 5: Convert to DataFrame and Save final dataset as a JSON file and as a CSV file
-
-
-import pandas as pd
-
-disney_movies_df = pd.DataFrame(movies_info)
-disney_movies_df.to_csv('disney_movies_data.csv')
